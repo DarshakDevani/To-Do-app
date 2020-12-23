@@ -11,7 +11,8 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-mongoose.connect("mongodb+srv://admin-darshak:darshak2000@cluster0.nftbc.mongodb.net/todolistDB?retryWrites=true&w=majority",{ useNewUrlParser: true });
+const connection = `mongodb+srv://admin-darshak:${env.process.MONGO_PWD}@cluster0.nftbc.mongodb.net/todolistDB?retryWrites=true&w=majority`
+mongoose.connect(connection,{ useNewUrlParser: true });
 
 const itemSchema = {
   name : String
