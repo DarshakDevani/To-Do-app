@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const date = require(__dirname + "/date.js");
@@ -11,8 +11,8 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-const connection = `mongodb+srv://admin-darshak:${env.process.MONGO_PWD}@cluster0.nftbc.mongodb.net/todolistDB?retryWrites=true&w=majority`
-mongoose.connect(connection,{ useNewUrlParser: true });
+const connection = `mongodb+srv://admin-darshak:${process.env.MONGO_PWD}@cluster0.nftbc.mongodb.net/todolistDB?retryWrites=true&w=majority`
+mongoose.connect(connection,{ useNewUrlParser: true,useUnifiedTopology: true });
 
 const itemSchema = {
   name : String
